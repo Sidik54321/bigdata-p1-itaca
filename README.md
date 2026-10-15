@@ -27,7 +27,9 @@ bigdata-p1-itaca/
 ├── ingesta/
 ├── etl/
 ├── dashboard/
+├── docs/
 ├── docker-compose.yml
+├── .env.example
 ├── .gitignore
 └── README.md
 ```
@@ -39,3 +41,5 @@ cp .env.example .env           # rellena las credenciales
 docker compose up -d
 docker compose ps
 ```
+
+![docker compose up y ps con el contenedor bigdata-mongo en marcha](docs/docker-compose-up.png)
