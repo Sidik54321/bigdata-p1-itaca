@@ -1,30 +1,27 @@
-# Proyecto 1 · [Título del proyecto]
-
-> **Plantilla.** Sustituye todo lo que va entre corchetes y borra las indicaciones en cursiva a medida que completes cada sección. Borra también las secciones de bloques que tu proyecto no trabaje.
+# Proyecto 1 · Práctica P1: Ingesta de datos de ITACA
 
 ## Descripción y objetivo
 
-*Dos o tres líneas: qué problema resuelve el proyecto, con qué datos y qué resultado final se obtiene (dashboard, modelo…).*
-
-[Descripción]
+Pasar los XML de ITACA (alumnos, cursos, calificaciones y contenidos) a JSON en `data/raw/`, quedándonos solo con los campos necesarios y anonimizando el NIA.
 
 ## Arquitectura
 
-*Diagrama del pipeline completo. Empieza con uno provisional en el Bloque 0 y actualízalo al terminar cada bloque.*
-
 ```mermaid
 graph LR
-    A[Fuente de datos] --> B[Ingesta]
-    B --> C[Almacenamiento]
-    C --> D[Procesamiento]
-    D --> E[Visualización / modelo]
+    A[XML de ITACA] --> B[Ingesta: XML a JSON]
+    B --> C[data/raw + MongoDB]
+    C --> D[ETL]
+    D --> E[Dashboard]
 ```
 
 ## Estructura del repositorio
 
 ```
 bigdata-p1-itaca/
-├── ingesta/
+├── data/
+│   ├── exportaciones/     # XML originales
+│   └── raw/               # JSON generados
+├── ingesta/               # XML -> JSON
 ├── etl/
 ├── dashboard/
 ├── docs/
@@ -39,7 +36,7 @@ bigdata-p1-itaca/
 ```bash
 cp .env.example .env           # rellena las credenciales
 docker compose up -d
-docker compose ps
+python ingesta/ingesta_itaca_xml.py
 ```
 
 ![docker compose up y ps con el contenedor bigdata-mongo en marcha](docs/docker-compose-up.png)

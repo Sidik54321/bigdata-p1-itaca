@@ -16,4 +16,3 @@ networks:
   bigdata-net:
     driver: bridge
 
-fasfds
